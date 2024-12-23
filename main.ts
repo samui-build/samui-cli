@@ -1,8 +1,9 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
+export * from './src/environment/index.ts'
+export * from './src/mpl-core/index.ts'
+export * from './src/solana/index.ts'
+export * from './src/spl-token/index.ts'
+export * from './src/validator/index.ts'
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
+  await import('./src/cli.ts').then(({ cli }) => cli.parse())
 }

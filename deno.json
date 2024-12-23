@@ -4,10 +4,34 @@
   "version": "1.0.0",
   "license": "MIT",
   "exports": "./main.ts",
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 120,
+    "indentWidth": 2,
+    "singleQuote": true,
+    "semiColons": false
+  },
   "tasks": {
-    "dev": "deno run --watch main.ts"
+    "dev": "deno run --watch main.ts",
+    "cli": "deno run -REN --allow-ffi --allow-sys --allow-run=docker main.ts"
+  },
+  "test": {
+    "exclude": [
+      "tmp/"
+    ]
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@1"
+    "@metaplex-foundation/mpl-core": "npm:@metaplex-foundation/mpl-core@^1.1.1",
+    "@metaplex-foundation/umi": "npm:@metaplex-foundation/umi@^0.9.2",
+    "@metaplex-foundation/umi-bundle-defaults": "npm:@metaplex-foundation/umi-bundle-defaults@^0.9.2",
+    "@solana-program/system": "npm:@solana-program/system@^0.6.2",
+    "@solana-program/token-2022": "npm:@solana-program/token-2022@^0.3.1",
+    "@solana/web3.js": "npm:@solana/web3.js@^2.0.0",
+    "@std/assert": "jsr:@std/assert@1",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
+    "@std/expect": "jsr:@std/expect@^1.0.10",
+    "@std/testing": "jsr:@std/testing@^1.0.8",
+    "commander": "npm:commander@^12.1.0",
+    "zod": "npm:zod@^3.24.1"
   }
 }
