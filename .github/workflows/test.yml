@@ -1,23 +1,35 @@
 name: tests
 on:
   push:
-    branches-ignore: [main]
+    branches-ignore: [ main ]
   workflow_dispatch:
 
 jobs:
   unit-tests:
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'windows-latest']
-        node_version: [lts/-1, lts/*, latest]
+        os: [ 'ubuntu-latest' ]
+        node_version: [ lts/-1, lts/*, latest ]
       fail-fast: false
     runs-on: ${{ matrix.os }}
+    services:
+      validator:
+        image: ghcr.io/samui-build/samui-test-validator:latest
+        ports:
+          - "8899:8899"
+          - "8900:8900"
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node_version }}
-          cache: pnpm
+          cache: 'pnpm'
       - run: pnpm install
       - run: pnpm run build
       - run: pnpm run test

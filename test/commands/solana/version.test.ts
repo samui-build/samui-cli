@@ -4,7 +4,6 @@ import { expect } from 'chai'
 describe('solana version', () => {
   before(() => {
     process.env.SAMUI_RPC_URL = 'http://localhost:8899'
-    process.env.SAMUI_RPC_URL_WS = 'ws://localhost:8900'
   })
 
   it('should run the solana version cmd', async () => {
