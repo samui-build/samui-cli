@@ -20,6 +20,8 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
           cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm run build
       - name: Check if version already exists
         id: version-check
         run: |
