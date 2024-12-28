@@ -5,7 +5,11 @@
   "author": "beeman @beeman",
   "scripts": {
     "build": "shx rm -rf dist && tsc -b",
+    "build:watch": "pnpm run build --watch",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check .",
     "lint": "eslint . --ext .ts",
+    "postinstall": "patch-package",
     "postpack": "shx rm -f oclif.manifest.json",
     "posttest": "pnpm run lint",
     "prepack": "oclif manifest && oclif readme",
@@ -20,7 +24,19 @@
   "dependencies": {
     "@oclif/core": "^4",
     "@oclif/plugin-help": "^6",
-    "@oclif/plugin-plugins": "^5"
+    "@oclif/plugin-not-found": "^3.2.31",
+    "@oclif/plugin-plugins": "^5",
+    "@oclif/plugin-version": "^2.2.18",
+    "@samui/solana": "1.1.0-canary-20241225030440",
+    "@solana-program/system": "^0.6.2",
+    "@solana-program/token": "^0.4.1",
+    "@solana-program/token-2022": "^0.3.1",
+    "@solana/transaction-confirmation": "^2.0.0",
+    "@solana/transactions": "^2.0.0",
+    "@solana/web3.js": "2",
+    "dotenv": "^16.4.7",
+    "patch-package": "^8.0.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@oclif/prettier-config": "^0.2.1",
@@ -28,6 +44,7 @@
     "@types/chai": "^4",
     "@types/mocha": "^10",
     "@types/node": "^18",
+    "@types/sinon": "^17.0.3",
     "chai": "^4",
     "eslint": "^8",
     "eslint-config-oclif": "^5",
@@ -35,6 +52,7 @@
     "eslint-config-prettier": "^9",
     "mocha": "^10",
     "oclif": "^4",
+    "prettier": "^3.4.2",
     "shx": "^0.3.3",
     "ts-node": "^10",
     "typescript": "^5"
@@ -60,15 +78,21 @@
     "commands": "./dist/commands",
     "plugins": [
       "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-not-found",
+      "@oclif/plugin-version"
     ],
     "topicSeparator": " ",
     "topics": {
-      "hello": {
-        "description": "Say hello to the world and others"
+      "solana": {
+        "description": "Solana related commands"
       }
     }
   },
   "repository": "samui-build/samui-cli",
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "pnpm": {
+    "patchedDependencies": {
+      "@solana/transaction-confirmation@2.0.0": "patches/@solana__transaction-confirmation@2.0.0.patch"
+    }
+  }
 }

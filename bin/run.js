@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node  --disable-warning=ExperimentalWarning
 
 import { execute } from '@oclif/core'
 
