@@ -5,7 +5,7 @@ import { BaseCommand } from '../../base-command.js'
 
 export default class SolanaBalance extends BaseCommand<typeof SolanaBalance> {
   static override args = {
-    address: Args.string({ description: 'address to get the balance for' }),
+    address: Args.string({ description: 'address to get the balance for, defaults to the signer address' }),
   }
 
   static override description = 'Get the balance of a Solana account'

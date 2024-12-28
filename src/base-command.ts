@@ -28,7 +28,7 @@ export abstract class BaseCommand<T extends typeof Command> extends Command {
       env: 'SAMUI_RPC_URL_WS',
       helpGroup: 'GLOBAL',
       optional: true,
-      summary: 'Specify the Solana RPC URL for websockets.',
+      summary: 'Specify the Solana RPC websocket URL, default will be inferred from the RPC URL.',
     }),
   }
 
