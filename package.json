@@ -85,6 +85,9 @@
     "topics": {
       "solana": {
         "description": "Solana related commands"
+      },
+      "spl-token": {
+        "description": "SPL token related commands"
       }
     }
   },
