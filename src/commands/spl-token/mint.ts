@@ -1,11 +1,11 @@
 import { Args } from '@oclif/core'
 import { handleSolanaError } from '@samui/solana'
-import { Address, assertIsAddress } from '@solana/web3.js'
-import { TOKEN_2022_PROGRAM_ADDRESS, findAssociatedTokenPda } from '@solana-program/token-2022'
+import { assertIsAddress } from '@solana/web3.js'
 
 import { BaseCommand } from '../../base-command.js'
 import { createTokenWithAmount } from '../../lib/create-token-with-amount.js'
 import { getOrCreateTokenAccount } from '../../lib/get-or-create-token-account.js'
+import { getTokenAccount } from '../../lib/get-token-account.js'
 
 export default class SplTokenMint extends BaseCommand<typeof SplTokenMint> {
   static override args = {
@@ -63,10 +63,4 @@ export default class SplTokenMint extends BaseCommand<typeof SplTokenMint> {
       handleSolanaError(error)
     }
   }
-}
-
-async function getTokenAccount({ mint, owner }: { mint: Address; owner: Address }) {
-  const [pda] = await findAssociatedTokenPda({ mint, owner, tokenProgram: TOKEN_2022_PROGRAM_ADDRESS })
-
-  return pda
 }

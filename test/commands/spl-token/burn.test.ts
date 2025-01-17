@@ -1,14 +1,17 @@
-import {runCommand} from '@oclif/test'
-import {expect} from 'chai'
+import { runCommand } from '@oclif/test'
+import { expect } from 'chai'
+import { join } from 'node:path'
 
-describe('spl-token/burn', () => {
-  it('runs spl-token/burn cmd', async () => {
-    const {stdout} = await runCommand('spl-token/burn')
-    expect(stdout).to.contain('hello world')
+const owner = 'FeeSoLT7WdoZVXsBPSZc7WKEuhVDVA1TKrNQoHacvxYm'
+const keypairPath = join(process.cwd(), 'test', 'fixtures', `${owner}.json`)
+
+describe('spl-token burn', () => {
+  before(async () => {
+    process.env.SAMUI_KEYPAIR_PATH = keypairPath
+    process.env.SAMUI_RPC_URL = 'http://localhost:8899'
   })
-
-  it('runs spl-token/burn --name oclif', async () => {
-    const {stdout} = await runCommand('spl-token/burn --name oclif')
-    expect(stdout).to.contain('hello oclif')
+  it('runs spl-token burn cmd', async () => {
+    const { stdout } = await runCommand('spl-token burn')
+    expect(stdout).to.contain('hello world')
   })
 })

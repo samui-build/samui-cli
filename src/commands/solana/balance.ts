@@ -13,12 +13,12 @@ export default class SolanaBalance extends BaseCommand<typeof SolanaBalance> {
   static override examples = ['<%= config.bin %> <%= command.id %>', '<%= config.bin %> <%= command.id %> <address>']
 
   public async run(): Promise<void> {
-    const { client, signer } = this.getSolanaContext()
+    const { client, cluster, signer } = this.getSolanaContext()
     const { args } = await this.parse(SolanaBalance)
 
     const address = args.address ?? signer.address
 
-    this.log(`Balance for ${address}`)
+    this.log(`Balance for ${address} on ${cluster}`)
     const balance = await getBalanceFormatted({ address, client })
     this.log(`${balance} SOL`)
   }

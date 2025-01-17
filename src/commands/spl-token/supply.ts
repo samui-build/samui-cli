@@ -19,12 +19,6 @@ export default class SplTokenSupply extends BaseCommand<typeof SplTokenSupply> {
   }
 
   public async run(): Promise<void> {
-    const { args, flags } = await this.parse(SplTokenSupply)
-
-    const name = flags.name ?? 'world'
-    this.log(`hello ${name} from /Users/beeman/dev/github/samui-build/samui-cli/src/commands/spl-token/supply.ts`)
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`)
-    }
+    console.log('TBD')
   }
 }
