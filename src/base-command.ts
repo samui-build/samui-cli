@@ -1,8 +1,11 @@
 import { Command, Flags, Interfaces } from '@oclif/core'
 import { SolanaConfig, SolanaContext, getSolanaContext } from '@samui/solana'
+import { Address } from '@solana/web3.js'
 import 'dotenv/config'
 import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
+
+import { labelMap } from './label-map.js'
 
 export type Flags<T extends typeof Command> = Interfaces.InferredFlags<(typeof BaseCommand)['baseFlags'] & T['flags']>
 export type Args<T extends typeof Command> = Interfaces.InferredArgs<T['args']>
@@ -92,8 +95,19 @@ export abstract class BaseCommand<T extends typeof Command> extends Command {
       throw new Error(`Failed to initialize Solana context: ${error}`)
     }
   }
+
+  label(address: Address): string {
+    return labelMap.has(address)
+      ? labelMap.get(address)!
+      : `${address.toString().slice(0, 6)}...${address.toString().slice(-6)}`
+  }
 }
 
 function normalizePath(path: string) {
   return path.replace(/^~/, process.env.HOME ?? '')
+}
+
+// Patch BigInt so we can log it using JSON.stringify without any errors
+;(BigInt.prototype as unknown as { toJSON: () => string }).toJSON = function () {
+  return this.toString()
 }

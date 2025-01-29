@@ -20,7 +20,7 @@ $ npm install -g samui-cli
 $ samui-cli COMMAND
 running command...
 $ samui-cli (--version)
-samui-cli/0.0.0 linux-x64 node-v18.20.5
+samui-cli/0.0.0 darwin-arm64 node-v22.12.0
 $ samui-cli --help [COMMAND]
 USAGE
   $ samui-cli COMMAND
@@ -38,6 +38,8 @@ USAGE
 * [`samui-cli solana ensure-balance AMOUNT [RECEIVER]`](#samui-cli-solana-ensure-balance-amount-receiver)
 * [`samui-cli solana genesis-hash`](#samui-cli-solana-genesis-hash)
 * [`samui-cli solana version`](#samui-cli-solana-version)
+* [`samui-cli spl-token close-mint MINT`](#samui-cli-spl-token-close-mint-mint)
+* [`samui-cli spl-token create-mint`](#samui-cli-spl-token-create-mint)
 * [`samui-cli validator`](#samui-cli-validator)
 * [`samui-cli version`](#samui-cli-version)
 
@@ -200,6 +202,63 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/solana/version.ts](https://github.com/samui-build/samui-cli/blob/v0.0.0/src/commands/solana/version.ts)_
+
+## `samui-cli spl-token close-mint MINT`
+
+Close a SPL token mint
+
+```
+USAGE
+  $ samui-cli spl-token close-mint MINT [--keypair-path <value>] [--rpc-url <value>] [--rpc-url-ws <value>]
+
+ARGUMENTS
+  MINT  Mint to close
+
+GLOBAL FLAGS
+  --keypair-path=<value>  [default: ~/.config/solana/id.json] Specify the Solana keypair path.
+  --rpc-url=<value>       [default: https://api.devnet.solana.com/] Specify the Solana RPC URL.
+  --rpc-url-ws=<value>    Specify the Solana RPC websocket URL, default will be inferred from the RPC URL.
+
+DESCRIPTION
+  Close a SPL token mint
+
+EXAMPLES
+  $ samui-cli spl-token close-mint
+```
+
+_See code: [src/commands/spl-token/close-mint.ts](https://github.com/samui-build/samui-cli/blob/v0.0.0/src/commands/spl-token/close-mint.ts)_
+
+## `samui-cli spl-token create-mint`
+
+Create a SPL token mint
+
+```
+USAGE
+  $ samui-cli spl-token create-mint [--keypair-path <value>] [--rpc-url <value>] [--rpc-url-ws <value>] [-d <value>] [-s
+    <value>]
+
+FLAGS
+  -d, --decimals=<value>    [default: 9] Number of decimals
+  -s, --secret-key=<value>  [default: generated] Secret key for the SPL mint to create.
+
+GLOBAL FLAGS
+  --keypair-path=<value>  [default: ~/.config/solana/id.json] Specify the Solana keypair path.
+  --rpc-url=<value>       [default: https://api.devnet.solana.com/] Specify the Solana RPC URL.
+  --rpc-url-ws=<value>    Specify the Solana RPC websocket URL, default will be inferred from the RPC URL.
+
+DESCRIPTION
+  Create a SPL token mint
+
+EXAMPLES
+  $ samui-cli spl-token create-mint
+
+FLAG DESCRIPTIONS
+  -s, --secret-key=<value>  Secret key for the SPL mint to create.
+
+    You can provide the path to a file or and environment variable using the syntax ENV:SAMUI_<env-variable-name>
+```
+
+_See code: [src/commands/spl-token/create-mint.ts](https://github.com/samui-build/samui-cli/blob/v0.0.0/src/commands/spl-token/create-mint.ts)_
 
 ## `samui-cli validator`
 

@@ -14,6 +14,7 @@
     "posttest": "pnpm run lint",
     "prepack": "oclif manifest && oclif readme",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "validator": "samui validator",
     "version": "oclif readme && git add README.md"
   },
   "bin": {
@@ -27,10 +28,12 @@
     "@oclif/plugin-not-found": "^3.2.31",
     "@oclif/plugin-plugins": "^5",
     "@oclif/plugin-version": "^2.2.18",
+    "@poppinss/cliui": "^6.4.2",
     "@samui/solana": "1.1.0-canary-20241225030440",
     "@solana-program/system": "^0.6.2",
     "@solana-program/token": "^0.4.1",
     "@solana-program/token-2022": "^0.3.1",
+    "@solana/fast-stable-stringify": "^2.0.0",
     "@solana/transaction-confirmation": "^2.0.0",
     "@solana/transactions": "^2.0.0",
     "@solana/web3.js": "2",
@@ -85,6 +88,9 @@
     "topics": {
       "solana": {
         "description": "Solana related commands"
+      },
+      "spl-token": {
+        "description": "SPL token related commands"
       }
     }
   },
