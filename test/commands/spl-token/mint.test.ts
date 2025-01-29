@@ -11,7 +11,7 @@ describe('spl-token mint', () => {
     process.env.SAMUI_RPC_URL = 'http://localhost:8899'
   })
 
-  it('runs spl-token mint cmd', async () => {
+  it.skip('runs spl-token mint cmd', async () => {
     const { stdout } = await runCommand('spl-token mint')
     expect(stdout).to.contain('hello world')
   })

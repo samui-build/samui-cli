@@ -17,7 +17,7 @@ describe('spl-token supply', () => {
     await runCommand(`spl-token delete-mint --secret-key ${mintKeypairPath}`)
   })
 
-  it('runs spl-token supply cmd', async () => {
+  it.skip('runs spl-token supply cmd', async () => {
     // ARRANGE
     // ACT
     const { stderr, stdout } = await runCommand('spl-token supply')

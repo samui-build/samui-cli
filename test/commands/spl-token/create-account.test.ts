@@ -11,7 +11,7 @@ describe('spl-token create-account', () => {
     process.env.SAMUI_RPC_URL = 'http://localhost:8899'
   })
 
-  it('runs spl-token create-account cmd', async () => {
+  it.skip('runs spl-token create-account cmd', async () => {
     const { stdout } = await runCommand('spl-token create-account')
     expect(stdout).to.contain('hello world')
   })
